@@ -1,7 +1,4 @@
 # destruct, the right way
-
-    npm install destruct
-
 ## Usage
 ```javascript
 import destruct from 'destruct'
