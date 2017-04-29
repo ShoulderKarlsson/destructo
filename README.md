@@ -4,7 +4,6 @@
 ```javascript
 
 const destruct = require('destruct')
-import destruct from 'destruct'
 
 const target = {
     username: 'someUsername',
