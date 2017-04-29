@@ -1,0 +1,22 @@
+{
+  "name": "destruct",
+  "version": "1.0.0",
+  "description": "## Usage ```javascript",
+  "main": "destruct.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShoulderKarlsson/destruct.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "shoulderkarlsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShoulderKarlsson/destruct/issues"
+  },
+  "homepage": "https://github.com/ShoulderKarlsson/destruct#readme"
+}
