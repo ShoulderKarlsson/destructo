@@ -3,8 +3,7 @@
 ## Usage
 ```javascript
 
-const destruct = require('destruct)
-
+const destruct = require('destruct')
 import destruct from 'destruct'
 
 const target = {
