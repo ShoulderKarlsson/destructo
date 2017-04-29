@@ -1,13 +1,23 @@
-# destruct, the right way
+# destruct
+
 ## Usage
 ```javascript
+
+const destruct = require('destruct)
+
 import destruct from 'destruct'
+
 const target = {
-    username: 'someusername',
-    person: {
-        name: 'John Doe'
+    username: 'someUsername',
+    deep: {
+        someData: 'someAmazingData',
+        deeper: {
+            moreData: 'evenDeeperData'
+        }
     }
 }
-const obj = destruct(target, 'username', 'person.name')
-console.log(obj) // { username: 'someusername', name: 'John Doe' }
+const result = destruct(target, 'username', 'deep.someData', 'deep.deeper.moreData')
+
+ // { username: 'someUsername', someData: 'someAmazingData', moreData: 'evenDeeperData' }
+console.log(result)
 ```
