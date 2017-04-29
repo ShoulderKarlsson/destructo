@@ -5,9 +5,15 @@ function destruct(target, ...keys) {
     .reduce((build, obj) => Object.assign({}, build, obj), {})
 
   const shallowObjects = keys.reduce((build, key) => {
-    return target.hasOwnProperty(key) ? 
+    return target.hasOwnProperty(key) ?
       Object.assign({}, build, { [key]: target[key] }) : build
   }, {})
+
+  const collidingKeys = Object.keys(shallowObjects).filter(
+    k => Object.keys(deepObjects).includes(k)
+  )
+
+  if (collidingKeys.length !== 0) throw new Error(`Colliding keys: ${collidingKeys.join(', ')}`)
 
   return Object.assign({}, shallowObjects, deepObjects)
 }
