@@ -32,7 +32,7 @@ const getDeepObjects = (target, deepKeys) => deepKeys
 
 
 /**
- * recusivly walks down the object until target is found.
+ * recusivly walks down the target object until key is found.
  * @param {Object} target 
  * @param {String} key - the current active key in .map above.
  */
