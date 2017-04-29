@@ -1,24 +1,45 @@
-function destruct(target, ...keys) {
-  const deepKeys = keys.filter(key => key.indexOf('.') > 1)
-  const deepObjects = deepKeys
-    .map(key => getDeepObject(target, key))
-    .reduce((build, obj) => Object.assign({}, build, obj), {})
 
-  const shallowObjects = keys.reduce((build, key) => {
-    return target.hasOwnProperty(key) ?
-      Object.assign({}, build, { [key]: target[key] }) : build
-  }, {})
+/**
+ * @param {Object} target - the target object
+ * @param {Array} keys - with keys that is to be extracted from the target
+ */
+const destruct = (target, ...keys) => {
+  const deepKeys = getDeepKeys(keys)
+  
+  const deepObjects = getDeepObjects(target, deepKeys)
 
-  const collidingKeys = Object.keys(shallowObjects).filter(
-    k => Object.keys(deepObjects).includes(k)
-  )
+  const shallowObjects = getShallowObjects(target, keys)
 
-  if (collidingKeys.length !== 0) throw new Error(`Colliding keys: ${collidingKeys.join(', ')}`)
+  const collidingKeys = getCollidingKeys(deepObjects, shallowObjects)
+
+  if (collidingKeys.length !== 0) throw new Error(`found colliding keys: ${collidingKeys.join(', ')}`)
 
   return Object.assign({}, shallowObjects, deepObjects)
 }
 
-function getDeepObject(target, key) {
+/**
+ * Finds all keys that are for deep objects.
+ * Sorting out keys with .
+ * @param {Array} keys 
+ */
+const getDeepKeys = keys => keys.filter(key => key.indexOf('.') > 1)
+
+/**
+ * Builds the deep objects together
+ * @param {Object} target 
+ * @param {Array} deepKeys 
+ */
+const getDeepObjects = (target, deepKeys) => deepKeys
+  .map(key => getDeepObject(target, key))
+  .reduce((build, obj) => Object.assign({}, build, obj), {}) 
+
+
+/**
+ * recusivly walks down the object until target is found.
+ * @param {Object} target 
+ * @param {String} key - the current active key in .map above.
+ */
+const getDeepObject = (target, key) => {
   if (target && target.hasOwnProperty(key)) {
     return {[key]: target[key]}
   }
@@ -30,8 +51,28 @@ function getDeepObject(target, key) {
   if (target.hasOwnProperty(parent)) {
     return getDeepObject(target[parent], children)
   } else {
-    throw new Error(`Non existing key ${parent}`)
+    throw new Error(`Could not find key ${parent} on target object.`)
   }
 }
+
+
+/**
+ * Takes all the shallow keys from the target object
+ * @param {Object} target 
+ * @param {Array} keys 
+ */
+const getShallowObjects = (target, keys) => keys
+  .reduce((build, key) => 
+    target.hasOwnProperty(key) ? Object.assign({}, build, {[key]: target[key]}) : build , {})
+
+/**
+ * Validates if there is any colloding keys from the deep and shallow objects
+ * if not - they keys will "overwrite" eachother and one will disapear.
+ * @param {Object} deepObjects 
+ * @param {Object} shallowObjects 
+ */
+const getCollidingKeys = (deepObjects, shallowObjects) => 
+  Object.keys(deepObjects).filter(key => Object.keys(shallowObjects).includes(key))
+
 
 module.exports = destruct
