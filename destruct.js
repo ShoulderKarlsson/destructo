@@ -5,11 +5,8 @@
  */
 const destruct = (target, ...keys) => {
   const deepKeys = getDeepKeys(keys)
-  
   const deepObjects = getDeepObjects(target, deepKeys)
-
   const shallowObjects = getShallowObjects(target, keys)
-
   const collidingKeys = getCollidingKeys(deepObjects, shallowObjects)
 
   if (collidingKeys.length !== 0) throw new Error(`found colliding keys: ${collidingKeys.join(', ')}`)
