@@ -66,7 +66,7 @@ const getShallowObjects = (target, keys) => keys
     target.hasOwnProperty(key) ? Object.assign({}, build, {[key]: target[key]}) : build , {})
 
 /**
- * Validates if there is any colloding keys from the deep and shallow objects
+ * Validates if there is any colliding keys from the deep and shallow objects
  * if not - they keys will "overwrite" eachother and one will disapear.
  * @param {Object} deepObjects 
  * @param {Object} shallowObjects 
