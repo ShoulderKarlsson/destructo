@@ -1,25 +1,25 @@
 {
   "name": "destructo",
   "version": "1.0.0",
-  "description": "Disassemble objects and get what you want!",
+  "description": "Destruct js objects and extract what you need!",
   "main": "destructo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShoulderKarlsson/destruct.git"
+    "url": "git+https://github.com/ShoulderKarlsson/destructo.git"
   },
   "keywords": [
     "object",
-    "destructuring",
     "destruction",
+    "destructuring",
     "extract"
   ],
   "author": "shoulderkarlsson",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ShoulderKarlsson/destruct/issues"
+    "url": "https://github.com/ShoulderKarlsson/destructo/issues"
   },
-  "homepage": "https://github.com/ShoulderKarlsson/destruct#readme"
+  "homepage": "https://github.com/ShoulderKarlsson/destructo#readme"
 }
