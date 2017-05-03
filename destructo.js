@@ -9,9 +9,6 @@ const destructo = (target, ...keys) => {
   const deepKeys = getDeepKeys(keys)
   const deepObjects = getDeepObjects(target, deepKeys)
   const shallowObjects = getShallowObjects(target, keys)
-  const collidingKeys = getCollidingKeys(deepObjects, shallowObjects)
-
-  if (collidingKeys.length !== 0) throw new Error(`found colliding keys: ${collidingKeys.join(', ')}`)
 
   return Object.assign({}, shallowObjects, deepObjects)
 }
@@ -49,8 +46,6 @@ const getDeepObject = (target, key) => {
 
   if (target.hasOwnProperty(parent)) {
     return getDeepObject(target[parent], children)
-  } else {
-    throw new Error(`Could not find key ${parent} on target object.`)
   }
 }
 
@@ -63,14 +58,5 @@ const getDeepObject = (target, key) => {
 const getShallowObjects = (target, keys) => keys
   .reduce((build, key) => 
     target.hasOwnProperty(key) ? Object.assign({}, build, {[key]: target[key]}) : build , {})
-
-/**
- * Validates if there is any colliding keys from the deep and shallow objects
- * if not - they keys will "overwrite" eachother and one will disapear.
- * @param {Object} deepObjects 
- * @param {Object} shallowObjects 
- */
-const getCollidingKeys = (deepObjects, shallowObjects) => 
-  Object.keys(deepObjects).filter(key => Object.keys(shallowObjects).includes(key))
 
 module.exports = destructo
