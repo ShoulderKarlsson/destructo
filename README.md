@@ -1,9 +1,9 @@
-# destruct
+# destructo
 
 ## Usage
 ```javascript
 
-const destruct = require('destruct')
+const destructo = require('destructo')
 
 const target = {
     username: 'someUsername',

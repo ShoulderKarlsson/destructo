@@ -3,7 +3,7 @@
  * @param {Object} target - the target object
  * @param {Array} keys - with keys that is to be extracted from the target
  */
-const destruct = (target, ...keys) => {
+const destructo = (target, ...keys) => {
   if (typeof target !== 'object') return
 
   const deepKeys = getDeepKeys(keys)
@@ -73,4 +73,4 @@ const getShallowObjects = (target, keys) => keys
 const getCollidingKeys = (deepObjects, shallowObjects) => 
   Object.keys(deepObjects).filter(key => Object.keys(shallowObjects).includes(key))
 
-module.exports = destruct
+module.exports = destructo

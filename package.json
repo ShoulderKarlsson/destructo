@@ -1,8 +1,8 @@
 {
-  "name": "destruct",
+  "name": "destructo",
   "version": "1.0.0",
-  "description": "## Usage ```javascript",
-  "main": "destruct.js",
+  "description": "Disassemble objects and get what you want!",
+  "main": "destructo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,10 @@
     "url": "git+https://github.com/ShoulderKarlsson/destruct.git"
   },
   "keywords": [
-    "javascript"
+    "object",
+    "destructuring",
+    "destruction",
+    "extract"
   ],
   "author": "shoulderkarlsson",
   "license": "ISC",
