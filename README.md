@@ -14,7 +14,7 @@ const target = {
         }
     }
 }
-const result = destruct(target, 'username', 'deep.someData', 'deep.deeper.moreData')
+const result = destructo(target, 'username', 'deep.someData', 'deep.deeper.moreData')
 
  // { username: 'someUsername', someData: 'someAmazingData', moreData: 'evenDeeperData' }
 console.log(result)
