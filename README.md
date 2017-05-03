@@ -1,5 +1,7 @@
 # destructo
 
+    npm install destructo
+
 ## Usage
 ```javascript
 
