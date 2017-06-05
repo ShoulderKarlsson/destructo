@@ -29,7 +29,6 @@ const getDeepObjects = (target, deepKeys) => deepKeys
   .map(key => getDeepObject(target, key))
   .reduce((build, obj) => Object.assign({}, build, obj), {}) 
 
-
 /**
  * recusivly walks down the target object until key is found.
  * @param {Object} target 
