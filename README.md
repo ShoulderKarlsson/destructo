@@ -26,7 +26,8 @@ const target = {
     }
 }
 
-const renamed = destructo(target, 'someKey:newName', 'deep.foo:newFoo') // {newName: 'someValue', newFoo: 'deepFoo'}
+const newKeyNames = destructo(target, 'someKey:newName', 'deep.foo:newFoo') 
+console.log(newKeyNames) // {newName: 'someValue', newFoo: 'deepFoo'}
 ```
 
 ### Nested Objects
