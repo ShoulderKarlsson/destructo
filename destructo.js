@@ -20,6 +20,9 @@ const destructo = (target, ...keys) => {
  */
 const getDeepKeys = keys => keys.filter(key => key.indexOf('.') > 1)
 
+
+
+
 /**
  * Builds the deep objects together
  * @param {Object} target 
@@ -29,14 +32,22 @@ const getDeepObjects = (target, deepKeys) => deepKeys
   .map(key => getDeepObject(target, key))
   .reduce((build, obj) => Object.assign({}, build, obj), {}) 
 
+
 /**
  * recusivly walks down the target object until key is found.
  * @param {Object} target 
  * @param {String} key - the current active key in loop above.
  */
 const getDeepObject = (target, key) => {
+  if (key.includes(':')) {
+    const [ originalName, renamed ] = key.split(':')
+    if (target && target.hasOwnProperty(originalName)) {
+      return { [renamed]: target[originalName] }
+    }
+  }
+
   if (target && target.hasOwnProperty(key)) {
-    return {[key]: target[key]}
+    return { [key]: target[key] }
   }
 
   const splittedKey = key.split('.')
@@ -48,14 +59,25 @@ const getDeepObject = (target, key) => {
   }
 }
 
-
 /**
  * Takes all the shallow keys from the target object
  * @param {Object} target 
  * @param {Array} keys 
  */
-const getShallowObjects = (target, keys) => keys
-  .reduce((build, key) => 
-    target.hasOwnProperty(key) ? Object.assign({}, build, {[key]: target[key]}) : build , {})
+const getShallowObjects = (target, keys) => {
+  return keys.reduce((build, key) => {
+    if (key.includes(':')) {
+      const [ originalName, renamed ] = key.split(':')
+      if (target.hasOwnProperty(originalName)) {
+        return Object.assign({}, build, {
+          [renamed]: target[originalName]
+        })
+      }
+    }
+    
+    return target.hasOwnProperty(key) ? 
+      Object.assign({}, build, {[key]: target[key]}) : build
+  }, {})
+}
 
 module.exports = destructo
