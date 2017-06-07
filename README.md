@@ -2,6 +2,7 @@
 ---
 
     npm install destructo
+    yarn add destructo
 
 ### Basic usage
 ```javascript
