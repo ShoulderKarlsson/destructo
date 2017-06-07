@@ -16,6 +16,18 @@ const personDetails = destructo(target, 'username', 'id')
 console.log(personDetails) // { username: 'JohnDoe', id: 100 }
 ```
 
+### Rename
+```javascript
+const target = {
+    someKey: 'someValue',
+    deep: {
+        foo: 'deepFoo'
+    }
+}
+
+const renamed = destructo(target, 'someKey:newName', 'deep.foo:newFoo') // {newName: 'someValue', newFoo: 'deepFoo'}
+```
+
 ### Nested Objects
 ```javascript
 const target = {
@@ -34,17 +46,18 @@ console.log(deep) // { foo: 'deepFoo', bar: 'deepBar' }
 
 ```javascript
 const someList = [
-    {name: 'Barkie', 'animalType': 'dog', color: 'brown'},
-    {name: 'Mjaui', 'animalType': 'cat', color: 'yellow'},
-    {name: 'Rawrie', 'animalType': 'lion', color: 'orange'}
+    {name: 'Lassie', 'animalType': 'dog', color: 'brown'},
+    {name: 'CatStevens', 'animalType': 'cat', color: 'yellow'},
+    {name: 'Christian', 'animalType': 'lion', color: 'orange'}
 ]
 const nameAndColor = someList.map(animal => destructo(animal, 'name', 'color'))
 console.log(nameAndColor)
 /*
     [
-        {name: 'Barkie', color: 'brown'},
-        {name: 'Mjaui', color: 'yellow'},
-        {name: 'Rawrie', color: 'orange'}
+        {name: 'Lassie', color: 'brown'},
+        {name: 'CatStevens', color: 'yellow'},
+        {name: 'Christian', color: 'orange'}
     ]
 */
 ```
+
