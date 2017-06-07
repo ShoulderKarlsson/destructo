@@ -1,6 +1,6 @@
 {
   "name": "destructo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Destruct js objects and extract what you need!",
   "main": "destructo.js",
   "scripts": {
