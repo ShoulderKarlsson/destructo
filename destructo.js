@@ -21,8 +21,6 @@ const destructo = (target, ...keys) => {
 const getDeepKeys = keys => keys.filter(key => key.indexOf('.') > 1)
 
 
-
-
 /**
  * Builds the deep objects together
  * @param {Object} target 
