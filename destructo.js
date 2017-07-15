@@ -3,8 +3,18 @@
  * @param {Object} target - the target object
  * @param {Array} keys - with keys that is to be extracted from the target
  */
-const destructo = (target, ...keys) => {
-  if (typeof target !== 'object') return
+// const destructo = (target, ...keys) => {
+//   if (typeof target !== 'object') return
+
+//   const deepKeys = getDeepKeys(keys)
+//   const deepObjects = getDeepObjects(target, deepKeys)
+//   const shallowObjects = getShallowObjects(target, keys)
+
+//   return Object.assign({}, shallowObjects, deepObjects)
+// }
+
+const destructo = (...keys) => target => {
+  if (typeof target !== 'object') return {}
 
   const deepKeys = getDeepKeys(keys)
   const deepObjects = getDeepObjects(target, deepKeys)
