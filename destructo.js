@@ -13,10 +13,17 @@ const destructo = (target, ...keys) => {
   return Object.assign({}, shallowObjects, deepObjects)
 }
 
+const toArray = (target, ...keys) => {
+  const obj = destructo(target, ...keys)
+  return Object
+    .keys(obj)
+    .map(K => obj[K])
+}
+
 /**
  * Finds all keys that are for deep objects.
  * Sorting out keys with .
- * @param {Array} keys 
+ * @param {Array} keys
  */
 const getDeepKeys = keys => keys.filter(key => key.indexOf('.') > 1)
 
@@ -25,17 +32,17 @@ const getDeepKeys = keys => keys.filter(key => key.indexOf('.') > 1)
 
 /**
  * Builds the deep objects together
- * @param {Object} target 
- * @param {Array} deepKeys 
+ * @param {Object} target
+ * @param {Array} deepKeys
  */
 const getDeepObjects = (target, deepKeys) => deepKeys
   .map(key => getDeepObject(target, key))
-  .reduce((build, obj) => Object.assign({}, build, obj), {}) 
+  .reduce((build, obj) => Object.assign({}, build, obj), {})
 
 
 /**
  * recusivly walks down the target object until key is found.
- * @param {Object} target 
+ * @param {Object} target
  * @param {String} key - the current active key in loop above.
  */
 const getDeepObject = (target, key) => {
@@ -61,8 +68,8 @@ const getDeepObject = (target, key) => {
 
 /**
  * Takes all the shallow keys from the target object
- * @param {Object} target 
- * @param {Array} keys 
+ * @param {Object} target
+ * @param {Array} keys
  */
 const getShallowObjects = (target, keys) => {
   return keys.reduce((build, key) => {
@@ -74,10 +81,11 @@ const getShallowObjects = (target, keys) => {
         })
       }
     }
-    
-    return target.hasOwnProperty(key) ? 
+
+    return target.hasOwnProperty(key) ?
       Object.assign({}, build, {[key]: target[key]}) : build
   }, {})
 }
 
 module.exports = destructo
+module.exports.toArray = toArray
